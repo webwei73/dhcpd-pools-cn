@@ -624,8 +624,8 @@ static void html_header(struct conf_t *state, FILE *restrict f)
 	fprintf(f, "<!DOCTYPE html>\n");
 	fprintf(f, "<html>\n");
 	fprintf(f, "<head>\n");
-	fprintf(f, "<title>ISC dhcpd dhcpd-pools output</title>\n");
-	fprintf(f, "<meta charset=\"utf-8\">\n");
+	fprintf(f, "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n");
+	fprintf(f, "<title>ISC dhcpd 地址分配状态</title>\n");
 	fprintf(f, "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n");
 	fprintf(f, "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n");
 	fprintf(f, "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" type=\"text/css\">\n");
@@ -636,8 +636,8 @@ static void html_header(struct conf_t *state, FILE *restrict f)
 	fprintf(f, "</head>\n");
 	fprintf(f, "<body>\n");
 	fprintf(f, "<div class=\"container\">\n");
-	fprintf(f, "<h2>ISC DHCPD status</h2>\n");
-	fprintf(f, "<small>File %s was last modified at ", state->dhcpdlease_file);
+	fprintf(f, "<h2>ISC DHCPD状态</h2>\n");
+	fprintf(f, "<small>文件 %s 最后修改时间 ", state->dhcpdlease_file);
 	dp_time_tool(f, state->dhcpdlease_file, 0);
 	fprintf(f, "</small><hr />\n");
 }
@@ -649,8 +649,8 @@ static void html_header(struct conf_t *state, FILE *restrict f)
 static void html_footer(FILE *restrict f)
 {
 	fprintf(f, "<br /><div class=\"well well-lg\">\n");
-	fprintf(f, "<small>Generated using %s<br />\n", PACKAGE_STRING);
-	fprintf(f, "More info at <a href=\"%s\">%s</a>\n", PACKAGE_URL, PACKAGE_URL);
+	fprintf(f, "<small>本页面由 %s 生成<br />\n", PACKAGE_STRING);
+	fprintf(f, "更多信息请参见 <a href=\"%s\">%s</a>\n", PACKAGE_URL, PACKAGE_URL);
 	fprintf(f, "</small></div></div>\n");
 	fprintf(f, "<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" type=\"text/javascript\"></script>\n");
 	fprintf(f, "<script type=\"text/javascript\" src=\"https://cdn.datatables.net/v/bs/jq-3.2.1/dt-1.10.16/datatables.min.js\"></script>\n");
@@ -771,19 +771,19 @@ static int output_html(struct conf_t *state)
 	outfile = open_outfile(state);
 	range_p = state->ranges;
 	html_header(state, outfile);
-	newsection(outfile, "Sum of all");
+	newsection(outfile, "汇总信息");
 	table_start(outfile, "a", "all");
 	if (state->header_limit & A_BIT) {
 		start_tag(outfile, "thead");
 		start_tag(outfile, "tr");
-		output_line(outfile, "th", "name");
-		output_line(outfile, "th", "max");
-		output_line(outfile, "th", "cur");
-		output_line(outfile, "th", "free");
-		output_line(outfile, "th", "percent");
-		output_line(outfile, "th", "touch");
-		output_line(outfile, "th", "t+c");
-		output_line(outfile, "th", "t+c perc");
+		output_line(outfile, "th", "名称");
+		output_line(outfile, "th", "总数");
+		output_line(outfile, "th", "在用");
+		output_line(outfile, "th", "空闲");
+		output_line(outfile, "th", "比例");
+		output_line(outfile, "th", "曾用");
+		output_line(outfile, "th", "在用+曾用");
+		output_line(outfile, "th", "在用+曾用比例");
 		if (state->backups_found == 1) {
 			output_line(outfile, "th", "bu");
 			output_line(outfile, "th", "bu perc");
@@ -811,19 +811,19 @@ static int output_html(struct conf_t *state)
 		end_tag(outfile, "tbody");
 	}
 	table_end(outfile);
-	newsection(outfile, "Shared networks");
+	newsection(outfile, "多地址段网络");
 	table_start(outfile, "s", "snet");
 	if (state->header_limit & S_BIT) {
 		start_tag(outfile, "thead");
 		start_tag(outfile, "tr");
-		output_line(outfile, "th", "name");
-		output_line(outfile, "th", "max");
-		output_line(outfile, "th", "cur");
-		output_line(outfile, "th", "free");
-		output_line(outfile, "th", "percent");
-		output_line(outfile, "th", "touch");
-		output_line(outfile, "th", "t+c");
-		output_line(outfile, "th", "t+c perc");
+		output_line(outfile, "th", "名称");
+		output_line(outfile, "th", "总数");
+		output_line(outfile, "th", "在用");
+		output_line(outfile, "th", "空闲");
+		output_line(outfile, "th", "比例");
+		output_line(outfile, "th", "曾用");
+		output_line(outfile, "th", "在用+曾用");
+		output_line(outfile, "th", "在用+曾用比例");
 		if (state->backups_found == 1) {
 			output_line(outfile, "th", "bu");
 			output_line(outfile, "th", "bu perc");
@@ -854,21 +854,21 @@ static int output_html(struct conf_t *state)
 		end_tag(outfile, "tbody");
 	}
 	table_end(outfile);
-	newsection(outfile, "Ranges");
+	newsection(outfile, "地址段");
 	table_start(outfile, "r", "ranges");
 	if (state->header_limit & R_BIT) {
 		start_tag(outfile, "thead");
 		start_tag(outfile, "tr");
-		output_line(outfile, "th", "shared net name");
-		output_line(outfile, "th", "first ip");
-		output_line(outfile, "th", "last ip");
-		output_line(outfile, "th", "max");
-		output_line(outfile, "th", "cur");
-		output_line(outfile, "th", "free");
-		output_line(outfile, "th", "percent");
-		output_line(outfile, "th", "touch");
-		output_line(outfile, "th", "t+c");
-		output_line(outfile, "th", "t+c perc");
+		output_line(outfile, "th", "网段名称");
+		output_line(outfile, "th", "起始IP");
+		output_line(outfile, "th", "结束IP");
+		output_line(outfile, "th", "总数");
+		output_line(outfile, "th", "在用");
+		output_line(outfile, "th", "空闲");
+		output_line(outfile, "th", "比例");
+		output_line(outfile, "th", "曾用");
+		output_line(outfile, "th", "在用+曾用");
+		output_line(outfile, "th", "在用+曾用比例");
 		if (state->backups_found == 1) {
 			output_line(outfile, "th", "bu");
 			output_line(outfile, "th", "bu perc");

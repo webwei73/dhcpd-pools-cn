@@ -588,12 +588,12 @@ MFLAGS=
 MAKEFLAGS=
 
 # Identity of this package.
-PACKAGE_NAME='dhcpd-pools'
+PACKAGE_NAME='dhcpd-pools-cn'
 PACKAGE_TARNAME='dhcpd-pools'
 PACKAGE_VERSION='3.0'
-PACKAGE_STRING='dhcpd-pools 3.0'
-PACKAGE_BUGREPORT='kerolasa@iki.fi'
-PACKAGE_URL='http://dhcpd-pools.sourceforge.net/'
+PACKAGE_STRING='dhcpd-pools-cn 3.0'
+PACKAGE_BUGREPORT='james@ustc.edu.cn'
+PACKAGE_URL='https://github.com/bg6cq/dhcpd-pools-cn'
 
 ac_unique_file="src/dhcpd-pools.h"
 # Factoring default headers for most tests.
