@@ -1,0 +1,5 @@
+dist_doc_DATA = \
+	samples/dhcpd.conf \
+	samples/dhcpd.leases \
+	samples/mustach.template \
+	samples/prometheus.template

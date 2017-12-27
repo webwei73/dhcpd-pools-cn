@@ -1,0 +1,586 @@
+dhcpd-pools -- History of visible changes.
+
+Copyright (C) 2006- Sami Kerola <kerolasa@iki.fi>
+See the end for copying conditions.
+
+Please send dhcpd-pools bug reports to kerolasa@iki.fi.
+
+gpg: Signature is crated using RSA key ID 8ED396E37E38D471A00530D3A9553245FDE9B739.
+
+
+Version 3.0
+Sami Kerola (56):
+      release: update web page meta data
+      update sitemap
+      output: make output_analysis() to be regular function
+      getdata: fix typo
+      output: add output helper functions
+      output: add color support to text output
+      output: include earlier missing data to json output
+      output: add --skip-ok option
+      other: add --skip-ok to usage() output
+      output: json nan values need quoting
+      other: do not use 'else' after 'return'
+      getdata: do not use 'else' after 'continue'
+      include: use project specific header guard
+      output: use range_output_helper() value in output_xml()
+      output: add mustach templating support
+      output: add separate first_ip and last_ip to json and mustach outputs
+      docs: add mustach sample files
+      tests: add mustach check
+      output: make mustach processing more robust
+      output: avoid mixing ntop_ipaddr() output buffers
+      output: do not skip over first range in mustach output
+      output: save and reuse output helper results
+      output: add must_put_err() utility function
+      output: include stdlib.h to avoid compilation error
+      gnulib: use nstrftime instead of strftime
+      build-sys: omit mustach compilation when it cannot work
+      usage: add error message informing mustach support is not available
+      output: deduplicate file closing code
+      clean up: remove unused variable
+      all files: replace global variables with runtime config state structure
+      all files: re-indent
+      analyze: bug fix shared networks counts
+      other: add Jose Bollo to version output credits
+      output: improve mustach template parsing error
+      analysis: shared networks to be linked list
+      output: make --skip-ok to effect --perfdata
+      output: move shared net andn range status check to output_helper
+      output: make warning and critical colors work in html output
+      output: display more entries in html table by default
+      output: shared net can be in suppressed state
+      output: improve html table
+      hash: include stdlib.h to avoid implicit declarations
+      clean up: fix couple compiler warnings
+      thanks: add Troy D. Hanson to credits about uthash
+      samples: add prometheus text file collector mustach template
+      output: make --skip to take arguments what will be skipped
+      misc: move command line option parsing to separate function
+      misc: move couple enums from global scope to file scope
+      docs: improve doxygen documentation
+      output: remove unused variable attribute
+      output: add more items to mustach tags
+      output: unify time stamp creations
+      orther: fix xstrstr_init() memcmp() return value usage
+      output: add some trivia data to json output
+      usage: --skip=ignored is actually 'suppressed'
+      release: 3.0
+
+Version 2.29
+Boris Lytochkin (1):
+      introduce -A arg: treat single subnets as shared-network with CIDR as their name
+
+Manuel Hachtkemper (1):
+      alarming: add additional performance data
+
+Sami Kerola (47):
+      tell in README when ./bootstrap is needed
+      add dhcpd-pools website content to a subdirectory
+      add sitemap url to robots.txt file
+      use long options in .indent.pro file
+      webpages: make index page mobile device friendly
+      webpages: compress sitemap.txt file
+      getdata: flip ranges if they are in greater smaller order
+      tests: add range definition flip test
+      contrib: add archlinux package build file
+      contrib: remove unnecessary cgi script
+      contrib: remove awk file duplicate
+      getdata: get rid of remaining stdbool usage
+      argument parsing: fix compiler warning
+      add dhcpd-pools Description Of A Project file
+      fix doap file git repository and license section
+      output: check alarming mode can output successfully
+      build-sys: update bootstrap from gnulib
+      build-sys: update gnulib .gitignore file
+      analyze: use while() when for() is less fit to purpose
+      build-sys: default to ./configure --enable-silent-rules
+      build-sys: always use restrict found by autoconf
+      docs: fix couple typos and improve a sentence in README
+      output: remove unnecessary increment
+      portability: add gnulib modules earlier missing
+      remove const and pure function attributes
+      man: improve synopsis and output limit
+      man: remove old html table only option argument from manual
+      getdata: report position in config file when parsing fails
+      output: fix timestamp localization on html page
+      output: add include avoid referringt to undefined definition
+      getdata: remove POSIX_FADV_NOREUSE
+      style: use same argument names in header and source file
+      contrib: Klaus Slott told about opensuse package
+      getdata: fpos_t is not easy to print correctly
+      lib: update .gitignore
+      fix typo
+      variable: add const to print_mac_addreses_tmp
+      lib: update .gitignore
+      add --ip-version option to force either IPv4 or IPv6 analysis
+      lib: update .gitignore
+      getdata: add cidr range support
+      build-sys: update bootstrap from gnulib
+      docs: update doxygen configuration file
+      docs: tell what needs to be done when releasing new version
+      docs: add build instruction link to the project web page
+      docs: update maintainer gpg key
+      release: 2.29
+
+Version 2.28
+Sami Kerola (26):
+      portability: Solaris 10 does not have err.h
+      fix couple compiler warnings
+      make binary exec path dynamic in scripts referring to it
+      update doxygen.conf file
+      add --snet-alarms option to suppress excess range alarms
+      add --warn-count and --crit-count options to suppress alarm noise
+      improve README file instructions
+      make html output to use Bootstrap and DataTables
+      fix typo in README
+      correct return value FIXME items
+      use more descriptive names in limit bits enum definition
+      remove upper limit of sort order definitions
+      fix protocol specifier in html output
+      use bitmap for booleans and other config that has known size
+      simplify output format selection, and passing
+      fix doxygen build
+      fix improve variable names
+      print include system error message when output fails
+      drop a core when bug condition happens
+      make usage() easier to read
+      unify quotation in error messages
+      add --warn-count and --crit-count test, and fix related bug
+      test all sorting options
+      change NAN markup to make tests work on mac
+      fix out of tree build tests
+      release: 2.28
+
+Version 2.27
+Sami Kerola (9):
+      docs: remove very basic git usage info
+      docs: remove todo items that will never happen
+      output: remove empty element from xml
+      add touched addresses counts to xml and json reports
+      add xml format check
+      improve html output
+      add hint about configure options to README
+      man: fix character class change
+      gitignore: update gnulib file list
+      release: 2.27
+
+Version 2.26
+$ git shortlog v2.25..v2.26
+Sami Kerola (15):
+      news: add the note about .sig pgp key id
+      reindent all files
+      declare global variables only once
+      add appropriate sorting function for struct leases_t
+      update kernel.org url in README
+      getdata: fix buffer-overflows reported by address sanitizer
+      update bootstrap from gnulib
+      getdata: fix buffer overflow [AddressSanitizer]
+      other: reduce variable scope
+      output: prefer thread safe function localtime_r()
+      tests: add regression test to avoid shared-net off by one alarming
+      issue
+      output: avoid division by zero
+      other: disallow unsigned counter ever to have minus value
+      maint: remove unnecessary braces, spaces, update gnulib .gitignore
+      release: 2.26
+
+Wolfgang Steudel (1):
+      alarming: include last shared network in alarming [off by one]
+
+Version 2.25
+$ git shortlog v2.24..v2.25
+Sami Kerola (14):
+      build-sys: use more strict method to check __builtin_expect
+      getdata: add missing HAVE_POSIX_FADVISE protection
+      getdata: fix consecutive range definition regression
+      man: add tip analysis of include files can be useful
+      thanks: add Fredrik LysÃ©n & Conor McCarthy
+      generic: use pure and const function attributes when possible
+      tests: fix testing error
+      output: make nagios output have performance data
+      build-sys: update gitinore file
+      output: use symbolic exit values for nagios commands
+      build-sys: update bootstrap script
+      build-sys: require automake 1.12 to get working test-driver
+      contrib: add release siging key to contrib/
+      release: 2.25
+
+Version 2.24
+$ git shortlog v2.23..v2.24
+Sami Kerola (22):
+      build-sys: update configure.ac
+      output: make output limits to apply to alarm return values
+      tests: add alarming tests
+      output: allow alarming, in case of success, be silent
+      tests: fix tests to use the new OK printing limit
+      docs: inform how the limits affect to printing when alarming is in use
+      output: allow user to ignore small ranges and shared networks
+      tests: test small network alarm ignoring
+      docs: add an example how to use limits with alarming
+      thanks: Dan Pritts
+      xstrstr: speed up analysis by avoiding string comparisons
+      other: memcmp() is tiny bit quicker than strncmp()
+      build-sys: update gnulib modules
+      build-sys: AC_PROG_CC_C99 is obsolete; use AC_PROG_CC
+      getdata: use correct file caching advice
+      analyze: remove unnecessary function
+      getdata: memccpy() is better than own similar function
+      getdata: split busy function to segments used via function pointer
+      various: split functions to IPv4 and IPv6 versions
+      various: fix memory leaks
+      getdata: fix one ip ranges when they have trailing spaces in definition
+      release: 2.24
+
+Version 2.23
+$ git shortlog v2.22..v2.23
+Sami Kerola (3):
+      gnulib: add gnulib modules
+      build-sys: update bootstrap from gnulib
+      release: 2.23
+
+Version 2.22
+$ git shortlog v2.21..v2.22
+Cheer Xiao (1):
+      getdata: treat binding states abandoned, expired and release like free
+
+Sami Kerola (19):
+      tests: add complete check including multiple ranges and shared networks
+      include: add missing declarations to dhcpd-pool.h
+      cppcheck: fix variable scoping
+      build-sys: update .gitignore
+      build-sys: add git-version-gen and test.sh to release package
+      docs: fix spelling mistakes in manual page
+      build-sys: ensure distribution has version file
+      build-sys: update git-version-gen from gnulib
+      tests: binding states commit needs to be reflected in expected results
+      build-sys: reorder gnulib macro in relation to C standard
+      getdata: posix_fadvise() error checking
+      getdata: certain input files caused SIGSEGV
+      tests: check how command works with invalid input
+      getdata: make a lease address detection more robust
+      getdata: make single address ranges work
+      tests: add a test for one ip range
+      build-sys: fix gnulib function order
+      build-sys: use non-recursive build
+      release: 2.22
+
+Version 2.21
+$ git shortlog v2.20..v2.21
+Cheer Xiao (10):
+      IPv6: add DHCPv6 support
+      sort: Use a comparer instead of returner
+      sort: Get rid of global comparer
+      counting & output: Convert all counters to double
+      fix: Put prototype of field_selector back to dhcpd-pools.h
+      sort: let field_selector return NULL at the end
+      counting: Let get_range_size return double
+      sort: let comp_* functions compare double
+      tests: update expected/v6
+      output: fix doc of output_double
+
+Gilles Bouthenot (5):
+      output: add json format support
+      json output: add newline at end
+      json output: remove useless, empty fields
+      json output: bugfix: correct range specify only first ip
+      contrib: add munin plugins
+
+Sami Kerola (29):
+      build-sys: remove c++ compiler check
+      tools: add indent command configuration file
+      tests: add basic tests
+      build-sys: update .gitignore
+      tests: add v6 check
+      output: remove unnecessary new line printing
+      build-sys: more clean ups
+      json output: use defined output file for all printing
+      tests: add json tests, and make fail output loud
+      ouput format: fix active lease printing
+      output ethernet: do not crash if ethernet is missing
+      docs: add doxygen tags, configuration file, and autotooling
+      backup counting: fix output regression
+      clean up: remove unused functions
+      clean up: move code to more proper location
+      hash: make delete to use HASH_ITER if it is available
+      clean up: move global variables to config structure
+      clean up: use enum as symbolic bit masks
+      clean up: convert parsing magic numbers to symbolic values
+      clean up: rename get_order() to merge() and mark static
+      clean up: fix few indentation slips
+      getdata: be consistant with symbolic numbers
+      smatch scan: fix few warnings
+      build-sys: allow tests run parallel
+      build-sys: update .gitignore files
+      docs: thanks to Cheer Xiao this software has IPv6 support
+      tests: fix make distcheck
+      docs: fix doxygen make distcheck breakage
+      release: 2.21
+
+Version 2.20
+$ git shortlog v2.19..v2.20
+Cheer Xiao (3):
+      ignore /gnulib/
+      Replace all htonl in getdata.c with ntohl.
+      Fix spelling mistakes.
+
+Sami Kerola (20):
+      analyze: use simpler comparison
+      analyze: sort ranges before analysis
+      sort: fix if else return statements
+      getdata: fix if else return statements
+      analyze, getdata: write functions in frequency order
+      getdata: stop looking after interesting field
+      getdata: skip strings before nth_field analysis
+      analyze: use gnulib
+      sort: fix get_order() if else return statement
+      (un)likely: use __builtin_expect to inform expected path
+      header: let gnulib do what it is best of
+      xstrstr: add function attributes
+      docs: fix spelling mistakes
+      getdata & analyze: fix first_ip and last_ip arithmetics
+      man: use configured dhcpd.conf and dhcpd.leases paths
+      build-sys: update gitignore
+      build-sys: clean up configure.ac
+      build-sys: make alarm warning & critical default configurable
+      man: fix errors in alarm warning and critical options text
+      release: 2.20
+
+Version 2.19
+$ git shortlog v2.18..v2.19
+Sami Kerola (19):
+      alarming: make native nagios support to dhcpd-pools
+      docs: add examples to manual page
+      docs: add note how to limit alarming scope
+      contrib: add nagios.conf example
+      build-sys: create only xz compressed distribution package
+      all: fix compiler warninings
+      style: fix few indentation issues
+      build-sys: use AM_CPPFLAGS rather than INCLUDES
+      output: fix sign-compare warning [clang]
+      build-sys: add what autoscan found bein missing
+      build-sys: be conservative about posix_fadvice
+      docs: clarify man page
+      build-sys: add gnulib
+      build-sys: clean gnulib & autotools checks
+      performance: add few restict and const key words
+      build-sys: remove files which where added by accident
+      docs: mention gnulib in README file
+      build-sys: update gitignore
+      release: 2.19
+
+Version 2.18
+$ git shortlog v2.17..v2.18
+Ryan Steinmetz (1):
+      build-sys: make build work under FreeBSD
+
+Sami Kerola (2):
+      build-sys: add --with-uthash=DIR ./configure option
+      analyze: a lot of IP counts being missed
+
+Version 2.17
+# git shortlog v2.16..v2.17
+Enno Gröper (1):
+      analyse: critical bug in the counting code
+
+Sami Kerola (16):
+      dhcpd-pools.h: move string.h to include
+      dhcpd-pools.h: move string.h to include
+      docs: TODO update
+      Merge branch 'master' of
+      ssh://dhcpd-pools.git.sourceforge.net/gitroot/dhc
+      build: smatch compiler warnings fixed
+      docs: enhance manual page readability
+      all files: use restrict key word for all pointer arguments
+      build-sys: C99 has true and false
+      docs: update thanks
+      TODO: update bugs
+      contrib: add first .awk algorithm test version to contrib
+      docs: update TODO
+      getdata: fix configuration parser bug
+      getdata: do not mix boolean and int data types [cppcheck]
+      output: verify stream status when closing files
+      build-sys: update news for release v2.17
+
+Version 2.16
+# git shortlog v2.15..v2.16
+Sami Kerola (25):
+      docs: help screen & man page
+      docs: add missing full-html flag
+      headers: include-what-you-use fixes
+      other: free backup ranges
+      prepare_memory bug: initialization missing
+      licensing: use FreeBSD license (was GNUv3)
+      parse_leases: exit at read error
+      getdata: realloc instead of asserting
+      getdata: potential overflow due unit change
+      bug: use uint32_t for IP numbers
+      analyze: use more logical variable names
+      getdata: initialize memory
+      all: include-what-you-see fixes
+      analyze: debugging leftover removed
+      THANKS: add Ahmed AL Dakhil
+      maint: coding style fixes
+      output: change to full html behaviour
+      build-sys: autotools configure.ac update
+      docs: NEWS update
+      docs: remove version from manual page
+      licensing: set placeholder properly
+      bug: use uint32_t for IP numbers
+      build-sys: ignore gprof & gcov files
+      getdata: new xstrstr function for performance
+      other: fix two warnings
+      build-sys: update news for release v2.16
+
+Version 2.15
+# git shortlog v2.14..v2.15
+Sami Kerola (13):
+      dhcpd-pools.h: function attributes declarations
+      dhcpd-pools.h: indentation fix
+      getdata.c: initialize variables to have safe values
+      autotools: point correct location of src
+      flose files & free memory when not needed
+      dhcpd-pools.h: portable program_invocation_short_name
+      build-sys: use git version as program version output
+      build-sys: git describe listed wrong tag
+      getdata: increase max number of shared networks
+      clean_up: checking errno at exit does not make sense
+      make range allocation dynamic
+      shared network names to be dynamically allocated
+      thanks: list update
+
+Version 2.14
+# git shortlog v2.13..v2.14
+Sami Kerola (18):
+      Fix to range dynamic-bootp specifier
+      Automake 2.64 is needed.
+      Arithmetic comparisons to be same way around
+      The xml output is dirty and marked as FIXME
+      Optimization on basis of gcov
+      Use what libc will provide
+      Not a syscall error, warn should be warnx.
+      Impossible to reach sections removed
+      posix_fadvice advice parameter change
+      Do not analyze if sort field selector is rubbish.
+      autogen.sh: test bug fix & clean up to messages
+      autogen.sh: typo fix in previous commit
+      Copyright notice change to GNU license 3
+      Allow xml output with leases to use output file
+      INSTALL file is unnecessary
+      fix to safe_strdup prototype.
+      ignore INSTALL file
+      configure.ac: autoscan updates
+      Release 2.14
+
+Version 2.13
+* Autoreconf to get ./configure et al up to date.
+* PACKAGE_URL introduced to configure.ac
+* Dominic Germain sent xml, and detailed xml, outputs patch.
+* Dominic Germain pointed out include directive bug, which broke
+  shared network name.
+* Anonymous contrib addition snmptest.pl which should provide
+  some sort of SNMP integration.
+* Range statements have dynamic-bootp flag and it no longer will
+  break analysis.
+
+Version 2.12
+* Dan Thorson fixed formating.
+* Roar Pettersen pointed out posix_fadvice portability bug.
+* Roar Pettersen pointed out fclose(stdout) portability bug.
+* Clean up will ran at exit instead of end of program.
+* Stian Øvrevåge pointed out shared network assignment bug.
+
+Version 2.11
+* Dan Thorson fixed memory boundary check for backup leases.
+
+Version 2.10
+* posix_fadvice to make read-ahead quicker.
+* Dan Thorson contributions:
+  o HTML output to be more beatyful.
+  o Full HTML output.
+  o Finglish to English translation.
+* Usage of autotools more properly.
+
+Version 2.9
+
+* Include files & shared network name bug fixed.
+* If first range had no leases analysis crashed.
+* Linux style indent.
+
+Version 2.8
+* dhcpd-pools.c: Default will skip merge sorting.
+* getdata.c: Interpretation of range wrote without spaces fixed.
+* getdata.c: Shared network name ending to brace fixed.
+* Failover backup IP counting.
+* CSV output bug fixed.
+
+Version 2.7
+* Some automake files to help make install pass without complains.
+* Function names to error messages where they where missing.
+* Some sort options where missing from help screen.
+* Manual page update.
+* Multi key sorting.
+* Range flip to support reverse order printing.
+* Output function & errno caused FreeBSD-7.0 to exit with error
+  when there was no trouble.
+* Code cleanup.
+
+Version 2.6
+* I forgot to follow include when I rewrote dhcpd.conf parser.
+* And the dhcpd.conf parser was still quite stupid.
+* All networks count was broken. Results before this version where bogus.
+* Feature: Touched IP counting.
+
+Version 2.5
+* Feature:
+* Reverse order sorting
+* Option parsing fixed.
+* FreeBSD-7.0 output to file did not work.
+* Completely new dhcpd.conf parser.
+
+Version 2.4
+* Feature:
+* Range output sorting.
+
+Version 2.3
+* Bugfixes:
+* Ranges was matching strings that where not ranges.
+* Unchomped new lines made ascii raport to look bad.
+
+
+Version 2.2
+* Bugfixes:
+*. No ranges in dhcpd.conf -> crash.
+* Better error messages.
+* Possibility to limit output.
+* Dhcpd.conf include statement will be followed.
+
+
+Version 2.1
+* Bugfixs:
+*. Range statements misinterpred.
+*. CSV output format.
+*. Manual page.
+
+
+Version 2.0
+
+* Version 1.x was awk script this is one done with C.
+* Only new feature is HTML output.
+
+
+-------------------------------------------------------
+Copying information:
+
+Copyright (C) 2006, Sami Kerola <kerolasa@iki.fi>
+
+   Permission is granted to anyone to make or distribute verbatim
+   copies of this document as received, in any medium, provided
+   that the copyright notice and this permission notice are
+   preserved, thus giving the recipient permission to
+   redistribute in turn.
+
+   Permission is granted to distribute modified versions of this
+   document, or of portions of it, under the above conditions,
+   provided also that they carry prominent notices stating who
+   last changed them.

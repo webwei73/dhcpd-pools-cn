@@ -1,0 +1,30 @@
+# This mustach template can be used as Prometheus text file.
+# https://prometheus.io/
+
+# HELP dhcpd_pools_ranges The range statistics.
+# TYPE dhcpd_pools_ranges gauge
+{{#subnets}}dhcpd_pools_ranges{range="{{first_ip}}",used="1"} {{used}} {{gettimeofday}}000
+dhcpd_pools_ranges{range="{{first_ip}}",touched="1"} {{touched}} {{gettimeofday}}000
+dhcpd_pools_ranges{range="{{first_ip}}",defined="1"} {{defined}} {{gettimeofday}}000
+dhcpd_pools_ranges{range="{{first_ip}}",free="1"} {{free}} {{gettimeofday}}000
+dhcpd_pools_ranges{range="{{first_ip}}",touch_count="1"} {{touch_count}} {{gettimeofday}}000
+dhcpd_pools_ranges{range="{{first_ip}}",status="1"} {{status}} {{gettimeofday}}000
+{{/subnets}}
+# HELP dhcpd_pools_shared_nets The shared networks statistics.
+# TYPE dhcpd_pools_shared_nets gauge
+{{#shared-networks}}dhcpd_pools_shared_nets{location="{{location}}",defined="1"} {{defined}} {{gettimeofday}}000
+dhcpd_pools_shared_nets{location="{{location}}",used="1"} {{used}} {{gettimeofday}}000
+dhcpd_pools_shared_nets{location="{{location}}",touched="1"} {{touched}} {{gettimeofday}}000
+dhcpd_pools_shared_nets{location="{{location}}",free="1"} {{free}} {{gettimeofday}}000
+dhcpd_pools_shared_nets{location="{{location}}",touch_count="1"} {{touch_count}} {{gettimeofday}}000
+dhcpd_pools_shared_nets{location="{{location}}",status="1"} {{status}} {{gettimeofday}}000
+{{/shared-networks}}
+# HELP dhcpd_pools_summary Statistics of the all networks.
+# TYPE dhcpd_pools_summary gauge
+{{#summary}}dhcpd_pools_summary{location="{{location}}",defined="1"} {{defined}} {{gettimeofday}}000
+dhcpd_pools_summary{location="{{location}}",used="1"} {{used}} {{gettimeofday}}000
+dhcpd_pools_summary{location="{{location}}",touched="1"} {{touched}} {{gettimeofday}}000
+dhcpd_pools_summary{location="{{location}}",free="1"} {{free}} {{gettimeofday}}000
+dhcpd_pools_summary{location="{{location}}",touch_count="1"} {{touch_count}} {{gettimeofday}}000
+dhcpd_pools_summary{location="{{location}}",status="1"} {{status}} {{gettimeofday}}000
+{{/summary}}

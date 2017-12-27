@@ -1,0 +1,328 @@
+.TH DHCPD-POOLS "1" "2017-11-15" "@VERSION@" "User Commands"
+.SH NAME
+dhcpd-pools \- ISC dhcpd pools usage analysis
+.SH SYNOPSIS
+.SY dhcpd-pools
+.OP \-\-config file
+.OP \-\-leases file
+.OP \-\-sort nimcptTe
+.OP \-\-reverse
+.OP \-\-format tHcxXjJ
+.OP \-\-mustach template
+.OP \-\-output file
+.OP \-\-limit nr
+.OP \-\-color when
+.OP \-\-warning percent
+.OP \-\-critical percent
+.OP \-\-warn\-count number
+.OP \-\-crit\-count number
+.OP \-\-snet\-alarms
+.OP \-\-minsize size
+.OP \-\-perfdata
+.OP \-\-version
+.OP \-\-help
+.YS
+.SH DESCRIPTION
+The program analyses ISC dhcpd shared network and pool usage and outputs the
+results in a format selected by user.
+.SH OUTPUT FIELDS
+.TP
+.I "shared net name"
+Name of the shared-network for the range.
+.TP
+.I "first ip"
+First IP in lease pool range.
+.TP
+.I "last ip"
+Last IP in lease pool range.
+.TP
+.I "max"
+Number of IPs which exist in a pool, shared network or all together.
+.TP
+.I "cur"
+Number of leases currently in use.
+.TP
+.I "percent"
+Percent of IPs currently in use compared to max.
+.TP
+.I "touch"
+Number of IP's which appear in the lease file, but who's leases have expired.
+A touched IP is either expired or abandoned.  The touched IP count is
+somewhat misleading when you try to determine if an IP pool is big enough; it
+is a better indicator of whether a pool is too large.
+.TP
+.I "t+c"
+The sum of Touched and Currently in-use leases.
+.TP
+.I "t+c perc"
+Percent of IPs either touched or currently in use, compared to max.
+.TP
+.I "bu"
+Failover pair can allocate these addresses.  The count appears only if there
+is failover configuration.
+.TP
+.I "bu perc"
+Percent of addresses that failover pair can allocate.  The percent appears
+only if there is failover configuration.
+.SH OPTIONS
+.TP
+\fB\-c\fR, \fB\-\-config\fR=\fIFILE\fR
+Path to the dhcpd.conf file.  If the dhcpd.conf has include files they
+can be analysed separately, that can be useful when trying to understand
+or monitor subset of data.
+.TP
+\fB\-l\fR, \fB\-\-leases\fR=\fIFILE\fR
+Path to the dhcpd.leases file.
+.TP
+\fB\-s\fR, \fB\-\-sort\fR=\fI[nimcptTe]\fR
+Sort ranges by chosen fields as a sorting keys.  Keys weight from left to
+right, i.e., if more weighting keys are equal next one is used.  The IP
+field is default sort key.
+.TP
+\fB\-r\fR, \fB\-\-reverse\fR
+Sort results in reverse order.
+.TP
+\fB\-f\fR, \fB\-\-format\fR=\fI[tHcxXjJ]\fR
+Output format.
+Text
+.RI ( t ).
+Full-html
+.RI ( H )
+page output.  In html page critical and warning thresholds can be visualized
+with \-\-color=always option.  The
+.RI ( c )
+stands for comma-separated values.  Output format xml
+.RI ( x )
+is similar to the dhcpstatus Perl module output.  The extended xml
+.RI ( X )
+format will print ethernet address details.  The
+.RI ( j )
+will output in json format, which can be extended with
+.RI ( J )
+to include ethernet address.
+.IP
+The default format is
+.IR @OUTPUT_FORMAT@ .
+.TP
+\fB\-\-mustach\fR=\fITEMPLATE\fR
+Output using mustach
+.I template
+file.  This is useful when the native output formats controlled with
+.B \-\-format
+option do not provide what you need.  See below example mustach template
+that is using all available {{tags}} to demonstrate what can be displayed
+and how.
+.IP
+@bindir@/dhcpd-pools --config @docdir@/dhcpd.conf --leases
+@docdir@/dhcpd.leases --mustach @docdir@/mustach.template
+.TP
+\fB\-o\fR, \fB\-\-output\fR=\fIFILE\fR
+.I File
+where output is written.  Default is stdout.
+.TP
+\fB\-L\fR, \fB\-\-limit\fR=\fINR\fR
+The
+.I NR
+will limit what will be printed.  Syntax is similar to
+.IR chmod (1)
+permission string.  The
+.I NR
+limit string uses two digits which vary between
+.IR 0 \ to \ 7 .
+The first digit determines which headers to display, and the second digit
+determines which numeric analysis tables to include in the output.  The
+following values are "OR'd" together to create the desired output.  The
+default is
+.IR @OUTPUT_LIMIT@ .
+.IP
+.TS
+tab(:);
+ll.
+0\fI1\fR:Print ranges
+0\fI2\fR:Print shared networks
+0\fI4\fR:Print total summary
+\fI1\fR0:Print range header
+\fI2\fR0:Print shared network header
+\fI4\fR0:Print total summary header
+.TE
+.IP
+The output limit for total summary has special meaning in
+.B \-\-warning
+and
+.B \-\-critical
+alarming context.  When the alarming is in use, and total is not wanted
+to be seen then in the case of alarming returning success nothing is
+printed.
+.TP
+\fB\-\-color\fR=\fIwhen\fR
+Use yellow for warning, red for critical, green for suppressed by \-\-minsize
+and blue when \-\-snet\-alarms is the cause of supression or shared network
+does not have any ranges.  The
+.I when
+string can be
+.BR always ,
+.BR never ,
+or
+.BR auto .
+Default is auto, that uses colors when command is running in interactive
+terminal.  With use of
+.B \-\-warning
+or
+.B \-\-critical
+coloring thresholds can be changed, but one must also use
+.B \-\-format=text
+to avoid turning on alarting mode.
+.TP
+\fB\-\-skip\fR=\fIwhen\fR
+The
+.I when
+can be one of the following:
+.IR ok ,
+.IR warning ,
+.IR critical ,
+.IR minsize ,
+or
+.IR suppressed .
+The skipping criterias are exact match with colors in \-\-color option.
+.TP
+\fB\-\-warning\fR=\fIpercent\fR
+Turn on alarm output format, and specify percentage number which will
+cause an alarm.  If either a range or shared network will exceed
+warning level return value of the command is
+.BR 1 .
+If only range monitoring is needed one can use limit option for scoping,
+for example
+.IR \-L10 .
+To monitor shared network only the limit would be
+.IR \-L20 .
+If warning percentage is not specified it defaults to
+.BR @ALARM_WARN@ .
+The
+.I percent
+argument allows fractions, e.g., 88.8, to be used.
+.TP
+\fB\-\-critical\fR=\fIpercent\fR
+The option is similar to warning, with exception of return value which
+is
+.BR 2 .
+If critical percentage is not specified it defaults to
+.BR @ALARM_CRIT@ .
+.TP
+\fB\-\-warn\-count\fR=\fInumber\fR
+A
+.I number
+of free leases before alarm is raised.  When specified both \-\-warning
+.I percent
+and count
+.I number
+are required to be exceeded in order to alarm criteria being fulfilled.
+.IP
+This option is intended to be used in setup where very large and small
+shared-networks and ranges co-exists.  In such environments percent based
+alarming can lead to either flood of alarms about small ranges, or way too
+great overhead of free addresses in large shared-networks.  Suggested usage
+is to set percentage to a level that makes small ranges to ring, and set the
+count to match level when an enormous shared-network is too few free leases.
+.IP
+Defaults to 2^32, that is size of entire IPv4 address space.
+.TP
+\fB\-\-crit\-count\fR=\fInumber\fR
+Same as \-\-warn\-count, but for critical alarms.
+.TP
+\fB\-\-snet\-alarms
+Suppress range alarms that are part of shared networks.  Use of this option
+will keep alarm criteria applied to ranges that are not part of shared-net
+along with shared-net alarms.  This option may help reducing alarm noise for
+configurations that has lots of small ranges in big shared-networks.
+.TP
+\fB\-\-minsize\fR=\fIsize\fR
+Ignore ranges and shared networks that are smaller or equal to the
+defined size.  This option is meaningful only in context of alarming, and
+will intended to suppress for example single host ranges.  By default this
+option is not in use.
+.TP
+\fB\-p\fR, \fB\-\-perfdata\fR
+Print additional performance data, like lease count, touched leases and
+backup leases.  This option is meaningful only in context of alarming and
+will print lots of data, if there are many networks.  By default this option
+is not in use.
+.TP
+\fB\-A\fR, \fB\-\-all\-as\-shared\fR
+Treat all stand-alone subnets as shared-network with named formed from it's
+CIDR.  By default this option is not in use for backwards compatibility.
+.TP
+\fB\-\-ip\-version\fR=\fI4|6\fR
+Force command to read configuration and leases files in IPv4 or IPv6 mode.
+Notice that when inputs do not match with what is forced analysis output is
+garbage.  This option should not be necessary to use, and exists only to
+allow debugging.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Print version information to standard output and exit successfully.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print help to standard output and exit successfully.
+.SH EXAMPLES
+.TP
+Print ranges header, and analysis.
+$ dhcpd-pools \-L 11 \-c dhcpd.conf \-l dhcpd.leases
+.br
+Ranges:
+.br
+shared net name [...]
+.TP
+Print shared networks and totals, both headers and results
+$ dhcpd-pools \-L 66 \-c dhcpd.conf \-l dhcpd.leases shared net name
+.br
+[...]
+.TP
+Alarming
+$ dhcpd-pools \-c dhcpd.conf \-l dhcpd.leases \-\-critical 80.1 \-\-warning 75
+.br
+CRITICAL: dhcpd-pools: Ranges; crit: 14 warn: 22 ok: 220 Shared nets; crit: 1 warn: 0 ok: 4
+.IP
+$ dhcpd-pools \-c dhcpd.conf \-l dhcpd.leases \-L 22 \-\-critical 70 \-\-warning 50
+.br
+[no-output]
+.br
+Suppress printing OK, and make alarm only to go off if shared networks
+exceed critial or warning levels.
+.SH FILES
+.TP
+@DHCPDCONF_FILE@
+ISC dhcpd configuration file.
+.TP
+@DHCPDLEASE_FILE@
+ISC dhcpd lease file.
+.TP
+@docdir@/prometheus.template
+Prometheus text file collector mustach template.
+.SH AUTHORS
+Original design by Sami Kerola.
+.br
+uthash by Troy D. Hanson.
+.br
+XML support by Dominic Germain, Sogetel inc.
+.br
+IPv6 support by Cheer Xiao.
+.br
+Mustache templating support by José Bollo.
+.SH LICENSE
+The dhcpd-pools uses FreeBSD License, uthash uses BSD license, the mustache
+uses Apache License, and the gnulib modules are mostly, but not entirely,
+GPL.
+.SH "REPORTING BUGS"
+Report bugs to
+.MT @PACKAGE_BUGREPORT@
+@PACKAGE_MAINTAINER@
+.ME
+.br
+.UR @PACKAGE_URL@
+Home page
+.UE
+.SH "SEE ALSO"
+.BR dhcpd.leases (5),
+.BR dhcpd.conf (5),
+.BR chmod (1),
+.UR https://mustache.github.io/
+.UE

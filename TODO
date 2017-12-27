@@ -1,0 +1,33 @@
+### Bugs
+
+Reported-by: Huangyu: I found dhcpd-pools didn't consider if the
+   active lease's ends time is passed so it would still think the
+   lease is active even if dhcpd daemon is stopped for a long time,
+   the leases marked by "active" state in lease_file has expired in
+   fact.
+
+### Feature requests
+
+o Assigned IPs count (Nelson)
+o Subnet counting class (Henryk)
+o When time stamps are part of lease situation evaluation (see
+  bug 1) add a --now switch which will one can use to change when
+  expiry happens.
+o Add lease time histogram support.
+
+### When releasing
+
+o Update gnulib
+o Update bootstrap
+o Update DataTables, and bootstrap versions; see https://datatables.net/download/index
+o Update NEWS, webpages/index.html dateModified & version
+o Make annotated git tag
+o ./configure --enable-doxygen && make distcheck
+o BROWSER=cat man -H ./man/dhcpd-pools.1 | tee ./webpages/man.html
+o gpg --armor --detach-sign dhcpd-pools*tar*
+* Update sitemap
+o Upload files to sourceforge
+o mv doc/html webpages/doxygen
+o sftp index.html man.html doxygen/* -> sourceforge web
+  remove old doxygen before uploading new
+o Send email to dhcpd-pools-announce@lists.sourceforge.net subject: Version 3.n is released

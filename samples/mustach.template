@@ -1,0 +1,67 @@
+Subnets:{{#subnets}}
+    location: {{location}}
+    range: {{range}}
+    first_ip: {{first_ip}}
+    last_ip: {{last_ip}}
+    used: {{used}}
+    touched: {{touched}}
+    defined: {{defined}}
+    free: {{free}}
+    percent: {{percent}}
+    touch_count: {{touch_count}}
+    touch_percent: {{touch_percent}}
+    backup_count: {{backup_count}}
+    backup_percent: {{backup_percent}}
+    status: {{status}}
+    gettimeofday: {{gettimeofday}}
+    lease_file_epoch_mtime: {{lease_file_epoch_mtime}}
+{{/subnets}}
+
+Shared-networks:{{#shared-networks}}
+    location: {{location}}
+    defined: {{defined}}
+    used: {{used}}
+    touched: {{touched}}
+    free: {{free}}
+    percent: {{percent}}
+    touch_count: {{touch_count}}
+    touch_percent: {{touch_percent}}
+    backup_count: {{backup_count}}
+    backup_percent: {{backup_percent}}
+    status: {{status}}
+    gettimeofday: {{gettimeofday}}
+    lease_file_epoch_mtime: {{lease_file_epoch_mtime}}
+{{/shared-networks}}
+
+Summary:{{#summary}}
+    location: {{location}}
+    defined: {{defined}}
+    used: {{used}}
+    touched: {{touched}}
+    free: {{free}}
+    percent: {{percent}}
+    touch_count: {{touch_count}}
+    touch_percent: {{touch_percent}}
+    backup_count: {{backup_count}}
+    backup_percent: {{backup_percent}}
+    status: {{status}}
+    gettimeofday: {{gettimeofday}}
+    lease_file_epoch_mtime: {{lease_file_epoch_mtime}}
+{{/summary}}
+
+localtime: {{localtime}}
+number_of_ranges: {{number_of_ranges}}
+number_of_shared_networks: {{number_of_shared_networks}}
+version: {{version}}
+
+conf_file_path: {{conf_file_path}}
+conf_file_local_mtime: {{conf_file_local_mtime}}
+conf_file_epoch_mtime: {{conf_file_epoch_mtime}}
+
+lease_file_path: {{lease_file_path}}
+lease_file_local_mtime: {{lease_file_local_mtime}}
+lease_file_epoch_mtime: {{lease_file_epoch_mtime}}
+
+template_file_path: {{template_file_path}}
+template_file_local_mtime: {{template_file_local_mtime}}
+template_file_epoch_mtime: {{template_file_epoch_mtime}}

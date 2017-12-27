@@ -1,0 +1,203 @@
+Subnets:
+    location: example1
+    range: 10.0.0.1 - 10.0.0.20
+    first_ip: 10.0.0.1
+    last_ip: 10.0.0.20
+    used: 11
+    touched: 0
+    defined: 20
+    free: 9
+    percent: 55
+    touch_count: 11
+    touch_percent: 55
+    backup_count: 1
+    backup_percent: 5
+    status: 0
+
+    location: example1
+    range: 10.1.0.1 - 10.1.0.20
+    first_ip: 10.1.0.1
+    last_ip: 10.1.0.20
+    used: 10
+    touched: 0
+    defined: 20
+    free: 10
+    percent: 50
+    touch_count: 10
+    touch_percent: 50
+    backup_count: 0
+    backup_percent: 0
+    status: 0
+
+    location: example2
+    range: 10.2.0.1 - 10.2.0.20
+    first_ip: 10.2.0.1
+    last_ip: 10.2.0.20
+    used: 8
+    touched: 0
+    defined: 20
+    free: 12
+    percent: 40
+    touch_count: 8
+    touch_percent: 40
+    backup_count: 0
+    backup_percent: 0
+    status: 0
+
+    location: example2
+    range: 10.3.0.1 - 10.3.0.20
+    first_ip: 10.3.0.1
+    last_ip: 10.3.0.20
+    used: 9
+    touched: 0
+    defined: 20
+    free: 11
+    percent: 45
+    touch_count: 9
+    touch_percent: 45
+    backup_count: 0
+    backup_percent: 0
+    status: 0
+
+    location: All networks
+    range: 10.4.0.1 - 10.4.0.20
+    first_ip: 10.4.0.1
+    last_ip: 10.4.0.20
+    used: 5
+    touched: 0
+    defined: 20
+    free: 15
+    percent: 25
+    touch_count: 5
+    touch_percent: 25
+    backup_count: 1
+    backup_percent: 5
+    status: 0
+
+
+Shared-networks:
+    location: example1
+    defined: 40
+    used: 21
+    touched: 0
+    free: 19
+    percent: 52.5
+    touch_count: 21
+    touch_percent: 52.5
+    backup_count: 1
+    backup_percent: 2.5
+    status: 0
+
+    location: example2
+    defined: 40
+    used: 17
+    touched: 0
+    free: 23
+    percent: 42.5
+    touch_count: 17
+    touch_percent: 42.5
+    backup_count: 0
+    backup_percent: 0
+    status: 0
+
+
+Summary:
+    location: All networks
+    defined: 100
+    used: 43
+    touched: 0
+    free: 57
+    percent: 43
+    touch_count: 43
+    touch_percent: 43
+    backup_count: 2
+    backup_percent: 2
+    status: 0
+
+
+number_of_ranges: 5
+number_of_shared_networks: 2
+
+
+
+--- skip ok ---
+Subnets:
+    location: example1
+    range: 10.0.0.1 - 10.0.0.20
+    first_ip: 10.0.0.1
+    last_ip: 10.0.0.20
+    used: 11
+    touched: 0
+    defined: 20
+    free: 9
+    percent: 55
+    touch_count: 11
+    touch_percent: 55
+    backup_count: 1
+    backup_percent: 5
+    status: 1
+
+    location: example1
+    range: 10.1.0.1 - 10.1.0.20
+    first_ip: 10.1.0.1
+    last_ip: 10.1.0.20
+    used: 10
+    touched: 0
+    defined: 20
+    free: 10
+    percent: 50
+    touch_count: 10
+    touch_percent: 50
+    backup_count: 0
+    backup_percent: 0
+    status: 1
+
+    location: example2
+    range: 10.3.0.1 - 10.3.0.20
+    first_ip: 10.3.0.1
+    last_ip: 10.3.0.20
+    used: 9
+    touched: 0
+    defined: 20
+    free: 11
+    percent: 45
+    touch_count: 9
+    touch_percent: 45
+    backup_count: 0
+    backup_percent: 0
+    status: 1
+
+
+Shared-networks:
+    location: example1
+    defined: 40
+    used: 21
+    touched: 0
+    free: 19
+    percent: 52.5
+    touch_count: 21
+    touch_percent: 52.5
+    backup_count: 1
+    backup_percent: 2.5
+    status: 1
+
+
+Summary:
+    location: All networks
+    defined: 100
+    used: 43
+    touched: 0
+    free: 57
+    percent: 43
+    touch_count: 43
+    touch_percent: 43
+    backup_count: 2
+    backup_percent: 2
+    status: 0
+
+
+number_of_ranges: 5
+number_of_shared_networks: 2
+
+
+

@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# Minimal regression test suite.
+
+IAM=$(basename $0)
+
+if [ ! -d tests/outputs ]; then
+	mkdir tests/outputs
+fi
+
+remove='/gettimeofday:/d; /^localtime:/d; /^conf_file_/d; /lease_file_/d; /^template_file_/d; /^version:/d'
+
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--mustach $top_srcdir/samples/mustach.template |
+	sed "$remove" >| tests/outputs/$IAM
+
+echo "--- skip ok ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--mustach $top_srcdir/samples/mustach.template --skip=ok --warning 44 |
+	sed "$remove" >> tests/outputs/$IAM
+
+diff -u $top_srcdir/tests/expected/$IAM tests/outputs/$IAM
+exit $?

@@ -1,0 +1,23 @@
+{
+   "active_leases": [
+         { "ip":"10.0.0.5", "macaddress":"00:00:00:00:00:00" }
+   ],
+   "subnets": [
+         { "location":"All networks", "range":"10.0.0.1 - 10.0.0.10", "first_ip":"10.0.0.1", "last_ip":"10.0.0.10", "defined":10, "used":1, "touched":0, "free":9, "percent":10, "touch_count":1, "touch_percent":10, "status":0 }
+   ],
+   "shared-networks": [
+   ],
+   "summary": {
+         "location":"All networks",
+         "defined":10,
+         "used":1,
+         "touched":0,
+         "free":9,
+         "percent":10,
+         "touch_count":1,
+         "touch_percent":10,
+         "status":0
+   },
+   "trivia": {
+   }
+}

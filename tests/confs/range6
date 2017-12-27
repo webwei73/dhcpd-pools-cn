@@ -1,0 +1,4 @@
+subnet6 dead:abba:1000::/56 {
+        range6 dead:abba:1000::/56;
+        prefix6 dead:abba:1000:0100:: dead:abba:1000:ff00::/56;
+}

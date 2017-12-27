@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# --skip option tests
+
+IAM=$(basename $0)
+
+if [ ! -d tests/outputs ]; then
+	mkdir tests/outputs
+fi
+
+echo "--- skip ok ---" >| tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always -ft --skip=ok --warning 44 >> tests/outputs/$IAM
+
+echo "--- skip warning ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always --format text --skip=warning --warning 44 --critical=50 \
+	>> tests/outputs/$IAM
+
+echo "--- skip critical ok ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always --format text --skip=ok,critical --warning 44 --critical=50 \
+	>> tests/outputs/$IAM
+
+echo "--- skip suppressed ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always --format text --critical 1 --snet-alarms --skip=suppressed \
+	>> tests/outputs/$IAM
+
+echo "--- skip minsize ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always --format text --critical=1 --minsize 20 --skip=minsize \
+	>> tests/outputs/$IAM
+
+echo "--- skip count ok ---" >> tests/outputs/$IAM
+dhcpd-pools -c $top_srcdir/samples/dhcpd.conf -l $top_srcdir/samples/dhcpd.leases \
+	--color=always --format=t --skip=ok --critical=1 --crit-count=12 --warning=1 \
+	--warn-count=15 >> tests/outputs/$IAM
+
+diff -u $top_srcdir/tests/expected/$IAM tests/outputs/$IAM
+exit $?

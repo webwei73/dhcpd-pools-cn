@@ -1,0 +1,10 @@
+Ranges:
+shared net name     first ip                                  last ip                                   max   cur    percent  touch   t+c  t+c perc
+All networks        dead:abba:1000::                        - dead:abba:1000:ff:ffff:ffff:ffff:ffff   4.72237e+21     2      0.000      1     3     0.000
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc
+All networks         4.72237e+21     2      0.000       1      3     0.000

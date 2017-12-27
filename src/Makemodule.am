@@ -1,0 +1,24 @@
+## Makefile.am -- Process this file with automake to produce Makefile.in
+
+bin_PROGRAMS = dhcpd-pools
+AC_PROG_RANLIB = resolv
+AM_CPPFLAGS = -I$(top_srcdir)/src -I$(top_srcdir)/lib -I$(top_builddir)/lib
+
+dhcpd_pools_LDADD = $(top_builddir)/lib/libdhcpd_pools.la $(MATH_LIBS)
+
+dhcpd_pools_SOURCES = \
+	src/analyze.c \
+	src/dhcpd-pools.c \
+	src/dhcpd-pools.h \
+	src/getdata.c \
+	src/hash.c \
+	src/other.c \
+	src/output.c \
+	src/sort.c
+
+if ENABLE_MUSTACH
+dhcpd_pools_SOURCES += \
+	src/mustach-dhcpd-pools.c \
+	src/mustach.c \
+	src/mustach.h
+endif

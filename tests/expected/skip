@@ -1,0 +1,80 @@
+--- skip ok ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+[1;33mexample1            10.0.0.1         - 10.0.0.20           20    11     55.000      0    11    55.000      1    5.000[0m
+[1;33mexample1            10.1.0.1         - 10.1.0.20           20    10     50.000      0    10    50.000      0    0.000[0m
+[1;33mexample2            10.3.0.1         - 10.3.0.20           20     9     45.000      0     9    45.000      0    0.000[0m
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;33mexample1                40    21     52.500       0     21    52.500      1    2.500[0m
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+All networks           100    43     43.000       0     43    43.000      2    2.000
+--- skip warning ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+[1;31mexample1            10.0.0.1         - 10.0.0.20           20    11     55.000      0    11    55.000      1    5.000[0m
+example2            10.2.0.1         - 10.2.0.20           20     8     40.000      0     8    40.000      0    0.000
+All networks        10.4.0.1         - 10.4.0.20           20     5     25.000      0     5    25.000      1    5.000
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;31mexample1                40    21     52.500       0     21    52.500      1    2.500[0m
+example2                40    17     42.500       0     17    42.500      0    0.000
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+All networks           100    43     43.000       0     43    43.000      2    2.000
+--- skip critical ok ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+[1;33mexample1            10.1.0.1         - 10.1.0.20           20    10     50.000      0    10    50.000      0    0.000[0m
+[1;33mexample2            10.3.0.1         - 10.3.0.20           20     9     45.000      0     9    45.000      0    0.000[0m
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+All networks           100    43     43.000       0     43    43.000      2    2.000
+--- skip suppressed ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+[1;31mAll networks        10.4.0.1         - 10.4.0.20           20     5     25.000      0     5    25.000      1    5.000[0m
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;31mexample1                40    21     52.500       0     21    52.500      1    2.500[0m
+[1;31mexample2                40    17     42.500       0     17    42.500      0    0.000[0m
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;31mAll networks           100    43     43.000       0     43    43.000      2    2.000[0m
+--- skip minsize ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;31mexample1                40    21     52.500       0     21    52.500      1    2.500[0m
+[1;31mexample2                40    17     42.500       0     17    42.500      0    0.000[0m
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+[1;31mAll networks           100    43     43.000       0     43    43.000      2    2.000[0m
+--- skip count ok ---
+Ranges:
+shared net name     first ip           last ip            max   cur    percent  touch   t+c  t+c perc     bu  bu perc
+[1;31mexample1            10.0.0.1         - 10.0.0.20           20    11     55.000      0    11    55.000      1    5.000[0m
+[1;31mexample1            10.1.0.1         - 10.1.0.20           20    10     50.000      0    10    50.000      0    0.000[0m
+[1;33mexample2            10.2.0.1         - 10.2.0.20           20     8     40.000      0     8    40.000      0    0.000[0m
+[1;31mexample2            10.3.0.1         - 10.3.0.20           20     9     45.000      0     9    45.000      0    0.000[0m
+
+Shared networks:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+
+Sum of all ranges:
+name                   max   cur     percent  touch    t+c  t+c perc     bu  bu perc
+All networks           100    43     43.000       0     43    43.000      2    2.000
