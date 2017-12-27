@@ -1,3 +1,20 @@
+
+请参考 https://github.com/bg6cq/ITTS/blob/master/app/dhcp/dhcpd-pool/README.md
+
+快速安装步骤：
+
+```
+curl https://raw.githubusercontent.com/troydhanson/uthash/master/src/uthash.h > /usr/include/uthash.h
+
+cd /usr/src
+git clone https://github.com/bg6cq/dhcpd-pools-cn.git
+cd dhcpd-pools-cn
+./configure
+make
+
+./dhcpd-pool
+```
+
 This is dhcpd-pools - ISC dhcpd lease status utility.
 
 Quick start.
