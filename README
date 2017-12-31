@@ -12,7 +12,7 @@ cd dhcpd-pools-cn
 ./configure
 make
 
-./dhcpd-pool
+./dhcpd-pools
 ```
 
 This is dhcpd-pools - ISC dhcpd lease status utility.
